@@ -1,0 +1,12 @@
+.idea
+*.pyc
+__pycache__
+.env
+.vscode/
+*.db
+*.pyc
+myenv
+.vscode
+.env.dev
+.env.test
+.pytest_cache
