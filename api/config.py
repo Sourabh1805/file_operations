@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 def get_dotenv_file():
 
@@ -20,12 +20,17 @@ dotenv_file = get_dotenv_file()
 load_dotenv(dotenv_file)
 print("----------- dotenv_file----------",dotenv_file)
 
-class Config(BaseSettings):
+
+
+class Settings(BaseSettings):
     ENV: str = "dev"
-   
-    class Config:
-        env_file = dotenv_file  
+    LOG_LEVEL: str = "INFO"
+    
+    model_config = SettingsConfigDict(
+        env_file=".env.dev",
+        extra="ignore"
+    )
 
     
 
-settings = Config()
+settings = Settings()

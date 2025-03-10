@@ -21,3 +21,6 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 app.add_middleware(asgi_correlation_id.CorrelationIdMiddleware)
 app.include_router(fs_router, prefix="/api/v1")
+@app.get("/")
+def read_root():
+    return {"message": "File System API is running!", "docs": "/api/v1/docs"}

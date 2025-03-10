@@ -217,3 +217,15 @@
 {"asctime": "2025-03-10T18:41:55", "msecs": 922.0, "levelname": "DEBUG", "correlation_id": "d8aa46dc", "name": "api.services.filesystem", "lineno": 222, "message": "Converting entity to response: /Drive3/"}
 {"asctime": "2025-03-10T18:41:55", "msecs": 922.0, "levelname": "DEBUG", "correlation_id": "d8aa46dc", "name": "api.services.filesystem", "lineno": 222, "message": "Converting entity to response: /Drive3/file1.txt"}
 {"asctime": "2025-03-10T18:41:55", "msecs": 922.0, "levelname": "INFO", "correlation_id": "d8aa46dc", "name": "uvicorn.access", "lineno": 473, "message": "127.0.0.1:53734 - \"GET /api/v1/structure HTTP/1.1\" 200"}
+{"asctime": "2025-03-10T20:19:34", "msecs": 468.0, "levelname": "INFO", "correlation_id": "-", "name": "api.main", "lineno": 15, "message": "Hello World"}
+{"asctime": "2025-03-10T20:19:34", "msecs": 483.0, "levelname": "INFO", "correlation_id": "-", "name": "api.main", "lineno": 16, "message": "<Logger api.main (DEBUG)>"}
+{"asctime": "2025-03-10T20:19:34", "msecs": 483.0, "levelname": "INFO", "correlation_id": "-", "name": "api.main", "lineno": 17, "message": "api.main"}
+{"asctime": "2025-03-10T20:19:34", "msecs": 483.0, "levelname": "INFO", "correlation_id": "-", "name": "api.main", "lineno": 18, "message": "Hello World"}
+{"asctime": "2025-03-10T20:19:34", "msecs": 483.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 62, "message": "Application startup complete."}
+{"asctime": "2025-03-10T20:19:34", "msecs": 499.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 215, "message": "Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)", "color_message": "Uvicorn running on \u001b[1m%s://%s:%d\u001b[0m (Press CTRL+C to quit)"}
+{"asctime": "2025-03-10T20:19:49", "msecs": 939.0, "levelname": "INFO", "correlation_id": "3e51928f", "name": "uvicorn.access", "lineno": 473, "message": "127.0.0.1:56537 - \"GET /docs HTTP/1.1\" 200"}
+{"asctime": "2025-03-10T20:19:50", "msecs": 334.0, "levelname": "INFO", "correlation_id": "bc2c1aac", "name": "uvicorn.access", "lineno": 473, "message": "127.0.0.1:56537 - \"GET /openapi.json HTTP/1.1\" 200"}
+{"asctime": "2025-03-10T20:21:16", "msecs": 476.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 263, "message": "Shutting down"}
+{"asctime": "2025-03-10T20:21:16", "msecs": 586.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 67, "message": "Waiting for application shutdown."}
+{"asctime": "2025-03-10T20:21:16", "msecs": 586.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 76, "message": "Application shutdown complete."}
+{"asctime": "2025-03-10T20:21:16", "msecs": 586.0, "levelname": "INFO", "correlation_id": "-", "name": "uvicorn.error", "lineno": 93, "message": "Finished server process [30204]", "color_message": "Finished server process [\u001b[36m%d\u001b[0m]"}
