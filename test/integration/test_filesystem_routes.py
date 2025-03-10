@@ -18,6 +18,10 @@ def test_full_lifecycle(client):
     assert response.status_code == 200
     assert response.json()["path"] == "/mainfull/documents/report.txt"
 
+    # add content to file
+    response = client.put("api/v1/files/mainfull/documents/report.txt/content?content=hiiii")
+    assert response.status_code == 200
+
      # Verify structure
     response = client.get("api/v1/structure")
     assert any(e["path"] == "/mainfull/documents/report.txt" 
