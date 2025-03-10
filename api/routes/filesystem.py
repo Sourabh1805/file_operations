@@ -9,7 +9,7 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 import logging
 
-from api.models.entities import EntityResponse, Container
+from api.models.entities import EntityResponse, Container, File, Drive
 from api.services.filesystem import FileSystemService
 
 logger = logging.getLogger(__name__)
@@ -121,6 +121,25 @@ def create_file(
         raise HTTPException(status_code=400, detail="Path cannot be empty")
 
     parts = clean_path.split('/')
+
+    if len(parts) < 1:  # Allow drive-level files
+        raise HTTPException(400, "Invalid path structure")
+    
+    # Handle direct drive files (path = "drive/file.txt")
+    if len(parts) == 1:
+        try:
+            drive = service.resolve_path(parts[0])
+            if not isinstance(drive, Drive):
+                raise HTTPException(400, "Parent must be a drive")
+            file = service.create_file(parts[0], drive)
+            return {
+                "path": file.path(),
+                "created_at": file.created_at.isoformat(),
+                "content": file.content
+            }
+        except Exception as e:
+            raise HTTPException(400, str(e))
+        
     if len(parts) < 2:
         logger.error("Invalid file path depth: %s", clean_path)
         raise HTTPException(
@@ -245,6 +264,40 @@ def move_entity(
         logger.critical("Unexpected error during move: %s", str(e), exc_info=True)
         raise HTTPException(status_code=500, detail="Internal server error") from e
 
+@router.put("/files/{path:path}/content")
+def update_file_content(
+    path: str,
+    content: str,
+    service: FileSystemService = Depends(get_filesystem_service)
+):
+    """
+    Update content of an existing file
+    
+    Args:
+        path: Full path to the file (e.g. /main/docs/report.txt)
+        content: New content to write to the file
+    """
+    try:
+        # Resolve the file entity
+        entity = service.resolve_path(path.strip('/'))
+        
+        # Validate it's a file
+        if not isinstance(entity, File):
+            raise HTTPException(
+                status_code=400,
+                detail="Cannot write content to non-file entity"
+            )
+            
+        # Update content
+        entity.content = content
+        
+        return {
+            "path": entity.path(),
+            "content": entity.content,
+            "modified_at": entity.modified_at.isoformat()
+        }
+    except (ValueError, KeyError) as e:
+        raise HTTPException(status_code=404, detail=str(e))
 
 @router.delete(
     "/entities/{path:path}",

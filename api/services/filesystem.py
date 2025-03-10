@@ -289,3 +289,12 @@ class FileSystemService:
         if isinstance(entity, Folder):
             return "folder"
         return "file"
+    
+    # app/services/filesystem.py (add to FileSystemService)
+    def update_file_content(self, file: File, content: str) -> File:
+        """Update file content with validation"""
+        if not isinstance(file, File):
+            raise TypeError("Can only update content of File entities")
+        file.content = content
+        logger.info("Updated content in %s", file.path())
+        return file
