@@ -24,7 +24,6 @@ A Python implementation of an object-oriented in-memory file system supporting d
 | `/files/{path}`                    | POST   | Create new file              | `path: str`            |
 | `/entities/{path}`                 | DELETE | Delete entity                | `path: str`            |
 | `/entities/{path}/move/{new_path}` | PUT    | Move/rename entity           | `path: str`, `new_path: str` |
-| `/files/{path}/content`            | PUT    | Update file content          | `path: str`, `content: str` |
 | `/structure`                       | GET    | Full system hierarchy        | -                      |
 
 ## Data Structure Design 🌳
