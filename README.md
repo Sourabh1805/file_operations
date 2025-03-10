@@ -7,6 +7,8 @@ A Python implementation of an object-oriented in-memory file system supporting d
 - **CRUD Operations**: Create/Delete/Move/Write entities with validation
 - **Type Safety**: Strict entity type enforcement
 - **Path Resolution**: Absolute path-based operations
+- **Dockerized** image
+
 
 # Solution 
 ## Key Focus Areas
@@ -75,8 +77,9 @@ class File:
 
 
 
-## Installation ⚙️
+# Installation ⚙️
 
+## Method 1: Local Development
 ### Clone Repository
 ```
 git clone https://github.com/yourusername/in-memory-filesystem.git
@@ -90,10 +93,17 @@ source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate  # Windows
 pip install -r requirements.txt
 ```
+### env setup
+
+rename ```env.sample ``` to ```.env```
 
 ### Run Tests
 
 Set the PYTHONPATH environment variable before running pytest:
+
+```
+pip install -r requirements-dev.txt
+```
 
 * On Windows:
 ```
@@ -116,4 +126,32 @@ uvicorn api.main:app --reload
 ### Swagger 
 ```
 http://127.0.0.1:8000/docs
+```
+
+
+
+## Method 2: Docker Containerization
+
+#### Prerequisites
+- Docker 20.10+
+- Docker Compose 2.0+
+
+#### Quick Start
+```bash
+# Clone repository
+git clone https://github.com/yourusername/in-memory-filesystem.git
+cd in-memory-filesystem
+
+# Build and start containers
+docker compose up -d --build
+
+# Follow logs
+docker compose logs -f
+
+# Stop containers
+docker compose down
+```
+### Swagger 
+```
+http://localhost:8000/docs
 ```
