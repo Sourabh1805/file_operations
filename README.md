@@ -68,6 +68,18 @@ class File:
         self.parent = None
 ```
 
+```
+            Entity
+              ▲
+       _______|_______
+      |               |
+  Container         File
+    ▲
+ ___|___
+|       |
+Drive  Folder
+```
+
 ## Why This Structure?
 - Fast Lookups: O(1) access via dictionary keys
 - Natural Hierarchy: Parent-child relationships mirror OS
@@ -155,3 +167,33 @@ docker compose down
 ```
 http://localhost:8000/docs
 ```
+
+
+
+# Assumptions 📋
+
+### 1. Storage Persistence
+- In-Memory Only: No persistent storage between application restarts
+- Session-Based: Data exists only while the service is running
+
+### 2. Naming Conventions
+- Unique Names: No duplicate names within the same container
+- Valid Characters: Names must match regex ^[a-zA-Z0-9_-]+$
+- Case Sensitivity: "File.txt" ≠ "file.txt"
+
+### 3. Hierarchy Constraints
+- Single Parent: Entities cannot exist in multiple locations
+- Drive Roots: All paths must start with a drive (e.g., /main/docs)
+
+### 4. Operational Limits
+- Path Length: Maximum 255 characters per path segment
+- File Size: No explicit size limits (memory-constrained)
+
+### 5. Security Model
+- No Authentication: Open access to all operations
+- No Encryption: Content stored in plain text
+- Local Access: Designed for local network use only
+
+### 6. Environment Setup
+- Development Focus: .env.dev loaded by default
+- Time Zones: All timestamps in UTC
