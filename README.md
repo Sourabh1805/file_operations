@@ -8,13 +8,33 @@ A Python implementation of an object-oriented in-memory file system supporting d
 - **Type Safety**: Strict entity type enforcement
 - **Path Resolution**: Absolute path-based operations
 
-## Key Features ✨
-- Create drives, folders, and files
-- Delete entities with cascade
-- Move entities between containers
-- File content modification
-- Path validation and error handling
-- 98% test coverage (pytest)
+# Solution 
+## Key Focus Areas
+
+### Demonstrated SDLC Lifecycle Events:
+       Followed a structured approach to requirements, design, implementation, and testing.
+       
+### SOLID Principles 
+        Single Responsibility Principle (SRP)
+        O - Open/Closed Principle (OCP)
+        L - Liskov Substitution Principle (LSP)
+        I - Interface Segregation Principle (ISP)
+
+### PEP8 Coding standard
+
+  
+### Advance Logging
+-     Multi-environment support (development/production)
+-     Structured JSON logging for file/cloud storage
+-     Rich console output for local development
+-     Request correlation IDs for traceability
+-     Log rotation and size management
+
+### Reliable Solution:
+      Prioritized system reliability even with unpredictable BigChat event behavior.
+
+### Scalable Architecture:
+      Designed a modular, scalable architecture to accommodate future enhancements.
 
 ## API Operations 🛠️
 | Endpoint                          | Method | Description                  | Parameters             |
@@ -24,6 +44,7 @@ A Python implementation of an object-oriented in-memory file system supporting d
 | `/files/{path}`                    | POST   | Create new file              | `path: str`            |
 | `/entities/{path}`                 | DELETE | Delete entity                | `path: str`            |
 | `/entities/{path}/move/{new_path}` | PUT    | Move/rename entity           | `path: str`, `new_path: str` |
+| `/files/{path}/content` | PUT | Update file content | `path: str`, `content :str` |
 | `/structure`                       | GET    | Full system hierarchy        | -                      |
 
 ## Data Structure Design 🌳
@@ -46,29 +67,12 @@ class File:
 ```
 
 ## Why This Structure?
-Fast Lookups: O(1) access via dictionary keys
+- Fast Lookups: O(1) access via dictionary keys
+- Natural Hierarchy: Parent-child relationships mirror OS
+- Memory Efficiency: Only stores active nodes
+- Path Resolution: path.split('/') → sequential child access
+- Scalability: Handles deep nesting efficiently
 
-Natural Hierarchy: Parent-child relationships mirror OS
-
-Memory Efficiency: Only stores active nodes
-
-Path Resolution: path.split('/') → sequential child access
-
-Scalability: Handles deep nesting efficiently
-
-## Design Principles 🧩
-
-SOLID Compliance
-
-Single Responsibility: Separate entities/operations
-
-Open/Closed: Extensible without modification
-
-PEP8 Standards: Strict style enforcement
-
-Immutable Timestamps: Created/modified times
-
-ACID-like Operations: Atomic moves/deletes
 
 
 ## Installation ⚙️
