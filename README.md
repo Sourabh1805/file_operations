@@ -17,10 +17,11 @@ A Python implementation of an object-oriented in-memory file system supporting d
        Followed a structured approach to requirements, design, implementation, and testing.
        
 ### SOLID Principles 
-        Single Responsibility Principle (SRP)
+        S - Single Responsibility Principle (SRP)
         O - Open/Closed Principle (OCP)
         L - Liskov Substitution Principle (LSP)
         I - Interface Segregation Principle (ISP)
+        D - Dependency Inversion Principle (DIP)
 
 ### PEP8 Coding standard
 
@@ -178,7 +179,7 @@ http://localhost:8000/docs
 
 ### 2. Naming Conventions
 - Unique Names: No duplicate names within the same container
-- Valid Characters: Names must match regex ^[a-zA-Z0-9_-]+$
+- Valid Characters: file name should not conatain "/"
 - Case Sensitivity: "File.txt" ≠ "file.txt"
 
 ### 3. Hierarchy Constraints
